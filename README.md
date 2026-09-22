@@ -2,9 +2,13 @@
 
 Plataforma de control de jornadas para **911 Transportes Especiales S.A.S.**
 
+**Repo:** https://github.com/Esteban1135730/911-control-servicios
+
 - **Frontend** (PWA conductor + panel admin): React + Vite  
 - **Backend** (API): Express + Prisma + PostgreSQL  
 - **Despliegue unificado**: Docker Compose  
+
+Guía completa de VPS: ver [`DEPLOY.md`](./DEPLOY.md) 
 
 ## Credenciales demo
 

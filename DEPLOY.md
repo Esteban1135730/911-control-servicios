@@ -34,7 +34,7 @@ newgrp docker
 
 # 3) Clonar el repositorio
 cd /opt
-sudo git clone https://github.com/ESTEBAN_USER/REPO_NAME.git 911-servicios
+sudo git clone https://github.com/Esteban1135730/911-control-servicios.git 911-servicios
 sudo chown -R $USER:$USER /opt/911-servicios
 cd /opt/911-servicios
 
