@@ -50,11 +50,11 @@ docker compose logs -f --tail=100
 ```
 
 ## URLs
-- App: `http://TU_IP_VPS:3080`
+- App HTTP: `http://TU_IP_VPS:3080` (cámara nativa del celular)
+- App HTTPS: `https://TU_IP_VPS:3443` (cámara en vivo; aceptar aviso de certificado)
 - API health: `http://TU_IP_VPS:3080/health`
 
-> El puerto **3080** evita choques con servicios de Hostinger en 80/8080.
-> Si quieres otro puerto, edita en `docker-compose.yml` la línea `"3080:80"`.
+> Abre los puertos **3080** y **3443** en el firewall de Hostinger.
 
 ## Actualizar después de un cambio en GitHub
 ```bash

@@ -41,8 +41,9 @@ services:
     depends_on:
       - api
     ports:
-      # 3080 evita choques típicos de Hostinger (80/8080)
+      # HTTP (fallback cámara nativa) + HTTPS autofirmado (cámara en vivo)
       - "3080:80"
+      - "3443:443"
 
 volumes:
   pgdata:
