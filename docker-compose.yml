@@ -41,8 +41,8 @@ services:
     depends_on:
       - api
     ports:
-      # 8080 evita choque con nginx/Apache de Hostinger en el puerto 80
-      - "8080:80"
+      # 3080 evita choques típicos de Hostinger (80/8080)
+      - "3080:80"
 
 volumes:
   pgdata:

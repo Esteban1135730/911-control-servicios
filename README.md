@@ -23,7 +23,7 @@ Guía completa de VPS: ver [`DEPLOY.md`](./DEPLOY.md)
 docker compose up --build -d
 ```
 
-- Web: http://localhost:8080  
+- Web: http://localhost:3080  
 - API directa: http://localhost:4000/health  
 
 ## Desarrollo local

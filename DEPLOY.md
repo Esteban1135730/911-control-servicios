@@ -50,11 +50,11 @@ docker compose logs -f --tail=100
 ```
 
 ## URLs
-- App: `http://TU_IP_VPS:8080`
-- API health: `http://TU_IP_VPS:8080/health`
+- App: `http://TU_IP_VPS:3080`
+- API health: `http://TU_IP_VPS:3080/health`
 
-> El puerto **8080** se usa porque en Hostinger el **80** suele estar ocupado.
-> Si quieres usar el 80, detén nginx/Apache y cambia en `docker-compose.yml` a `"80:80"`.
+> El puerto **3080** evita choques con servicios de Hostinger en 80/8080.
+> Si quieres otro puerto, edita en `docker-compose.yml` la línea `"3080:80"`.
 
 ## Actualizar después de un cambio en GitHub
 ```bash
