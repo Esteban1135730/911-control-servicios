@@ -50,8 +50,11 @@ docker compose logs -f --tail=100
 ```
 
 ## URLs
-- App: `http://TU_IP_VPS`
-- API health: `http://TU_IP_VPS/health`
+- App: `http://TU_IP_VPS:8080`
+- API health: `http://TU_IP_VPS:8080/health`
+
+> El puerto **8080** se usa porque en Hostinger el **80** suele estar ocupado.
+> Si quieres usar el 80, detén nginx/Apache y cambia en `docker-compose.yml` a `"80:80"`.
 
 ## Actualizar después de un cambio en GitHub
 ```bash
