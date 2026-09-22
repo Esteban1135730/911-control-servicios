@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  DRIVER
+}
+
+enum ServiceStatus {
+  OPEN
+  CLOSED
+  IN_REVIEW
+  APPROVED
+}
+
+model User {
+  id           String    @id @default(cuid())
+  username     String    @unique
+  passwordHash String
+  fullName     String
+  phone        String
+  role         Role      @default(DRIVER)
+  active       Boolean   @default(true)
+  hourlyRate   Decimal?  @db.Decimal(10, 2)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  services     Service[] @relation("DriverServices")
+  reviewed     Service[] @relation("ReviewedBy")
+  auditLogs    AuditLog[]
+  pushSubs     PushSubscription[]
+}
+
+model Service {
+  id              String        @id @default(cuid())
+  driverId        String
+  status          ServiceStatus @default(OPEN)
+
+  startedAt       DateTime
+  startLat        Float
+  startLng        Float
+  startAccuracy   Float?
+  startPhotoPath  String
+  startNote       String?
+
+  endedAt         DateTime?
+  endLat          Float?
+  endLng          Float?
+  endAccuracy     Float?
+  endPhotoPath    String?
+  endNote         String?
+
+  hoursWorked     Decimal?      @db.Decimal(10, 4)
+  adminNotes      String?
+  reviewedAt      DateTime?
+  reviewedById    String?
+
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  driver          User          @relation("DriverServices", fields: [driverId], references: [id])
+  reviewedBy      User?         @relation("ReviewedBy", fields: [reviewedById], references: [id])
+
+  @@index([driverId, status])
+  @@index([startedAt])
+  @@index([status])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  action     String
+  entity     String
+  entityId   String?
+  details    Json?
+  ip         String?
+  createdAt  DateTime @default(now())
+
+  user       User?    @relation(fields: [userId], references: [id])
+
+  @@index([entity, entityId])
+  @@index([createdAt])
+}
+
+model PushSubscription {
+  id        String   @id @default(cuid())
+  userId    String
+  endpoint  String   @unique
+  p256dh    String
+  auth      String
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AppSetting {
+  key   String @id
+  value String
+}
