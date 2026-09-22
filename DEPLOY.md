@@ -50,9 +50,9 @@ docker compose logs -f --tail=100
 ```
 
 ## Dominio de producción / demo
-- **https://911.inredesfot.com**
+- **https://911.inredesoft.com** (dominio base: [inredesoft.com](https://inredesoft.com/))
 
-### DNS (panel donde está inredesfot.com)
+### DNS (panel donde está inredesoft.com)
 | Tipo | Nombre | Valor | TTL |
 |------|--------|-------|-----|
 | A | `911` | `76.13.101.203` | 300 |
@@ -65,17 +65,17 @@ git pull
 docker compose up --build -d
 
 # Copiar sitio nginx
-sudo cp deploy/nginx-911.inredesfot.com.conf /etc/nginx/sites-available/911-servicios
+sudo cp deploy/nginx-911.inredesoft.com.conf /etc/nginx/sites-available/911-servicios
 sudo ln -sf /etc/nginx/sites-available/911-servicios /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 
 # Certificado Let's Encrypt (HTTPS real)
 sudo apt install -y certbot python3-certbot-nginx
-sudo certbot --nginx -d 911.inredesfot.com
+sudo certbot --nginx -d 911.inredesoft.com
 ```
 
-Luego abre: **https://911.inredesfot.com**
+Luego abre: **https://911.inredesoft.com**
 
 ## URLs locales / IP (sin dominio)
 - App HTTP: `http://TU_IP_VPS:3080` (cámara nativa)
